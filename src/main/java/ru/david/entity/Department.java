@@ -1,4 +1,4 @@
-package ru.david.bd_lab2.entity;
+package ru.david.entity;
 
 
 public class Department {

@@ -1,4 +1,4 @@
-package ru.david.bd_lab2.entity;
+package ru.david.entity;
 
 import java.math.BigDecimal;
 import java.util.List;
