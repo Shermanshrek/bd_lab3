@@ -42,10 +42,30 @@ public class ListDemo {
         String popped = jedis.rpop(listKey);
         System.out.println("rpop: " + popped + ", осталось: " + getList(listKey));
 
+        // Удаление с начала
+        String leftPopped = jedis.lpop(listKey);
+        System.out.println("lpop: " + leftPopped + ", осталось: " + getList(listKey));
+
         removeFromList(listKey, "task2");
         System.out.println("После lrem task2: " + getList(listKey));
 
         jedis.linsert(listKey, ListPosition.AFTER, "task1", "new_task");
         System.out.println("После linsert после task1: " + getList(listKey));
+
+        // Длина списка
+        long len = jedis.llen(listKey);
+        System.out.println("llen: " + len);
+
+        // Получение элемента по индексу
+        String element = jedis.lindex(listKey, 0);
+        System.out.println("lindex[0]: " + element);
+
+        // Изменение элемента по индексу
+        jedis.lset(listKey, 0, "updated_task");
+        System.out.println("После lset[0]: " + getList(listKey));
+
+        // Обрезка списка
+        jedis.ltrim(listKey, 0, 1);
+        System.out.println("После ltrim(0,1): " + getList(listKey));
     }
 }

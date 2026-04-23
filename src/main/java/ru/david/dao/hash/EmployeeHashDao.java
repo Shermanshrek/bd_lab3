@@ -21,7 +21,7 @@ public class EmployeeHashDao {
         jedis.hset(key, "fio", employee.getFio());
         jedis.hset(key, "salary", employee.getSalary().toString());
         jedis.hset(key, "department", String.valueOf(employee.getDepartment().getDepartmentId()));
-        if (employee.getDepartment() != null) {
+        if (employee.getManager() != null) {
             jedis.hset(key, "managerId", String.valueOf(employee.getManager().getEmpId()));
         }
     }

@@ -3,6 +3,10 @@ package ru.david.dao;
 import redis.clients.jedis.Jedis;
 import ru.david.entity.Department;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class DepartmentDao extends RedisDao{
     private static final String ENTITY_TYPE = "department";
 
@@ -30,5 +34,12 @@ public class DepartmentDao extends RedisDao{
 
     public boolean exists(Long id) {
         return existsEntity(ENTITY_TYPE, String.valueOf(id));
+    }
+
+    public List<Department> findAll() {
+        return getAllIds(ENTITY_TYPE).stream()
+                .map(id -> findById(Long.parseLong(id)))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

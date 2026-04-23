@@ -16,11 +16,12 @@ public class Employee {
 
     private List<Employee> subordinates;
 
-    public Employee(Object o, String fio, BigDecimal bigDecimal, Department itDept, Object o1) {
-        this.empId = (Long) o;
+    public Employee(Long empId, String fio, BigDecimal salary, Department department, Employee manager) {
+        this.empId = empId;
         this.fio = fio;
-        this.salary = bigDecimal;
-        this.department = itDept;
+        this.salary = salary;
+        this.department = department;
+        this.manager = manager;
     }
 
     public Employee(Long empId, String fio, BigDecimal salary, Department department, Employee manager, List<Employee> subordinates) {

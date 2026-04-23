@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 import java.util.Set;
 
 public class SetDemo {
-    private Jedis jedis;
+    private final Jedis jedis;
 
     public SetDemo(Jedis jedis) {
         this.jedis = jedis;

@@ -11,7 +11,6 @@ public class PubSubService {
         this.jedis = jedis;
     }
 
-    // Запуск подписчика в отдельном потоке
     public void startSubscriber() {
         new Thread(() -> {
             // Для подписки нужно отдельное соединение
@@ -31,13 +30,11 @@ public class PubSubService {
         }).start();
     }
 
-    // Публикация сообщения
     public void publish(String message) {
         jedis.publish(CHANNEL, message);
         System.out.println("[PUBLISHER] Отправлено: " + message);
     }
 
-    // Демонстрация работы очереди через список (простая очередь)
     public void demoQueue() {
         String queueKey = "task_queue";
         System.out.println("\n=== Демонстрация очереди (список) ===");

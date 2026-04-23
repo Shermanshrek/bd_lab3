@@ -6,6 +6,9 @@ import ru.david.entity.Employee;
 import ru.david.entity.Project;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ProjectDao extends RedisDao{
     private static final String ENTITY_TYPE = "project";
@@ -53,5 +56,12 @@ public class ProjectDao extends RedisDao{
 
     public boolean exists(Long id) {
         return existsEntity(ENTITY_TYPE, String.valueOf(id));
+    }
+
+    public List<Project> findAll() {
+        return getAllIds(ENTITY_TYPE).stream()
+                .map(id -> findById(Long.parseLong(id)))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

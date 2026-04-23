@@ -22,7 +22,7 @@ public abstract class RedisDao {
     }
 
     protected void deleteEntity(String entityType, String entityId){
-        Set<String> keys = jedis.keys(String.format("%s:%s", entityType, entityId));
+        Set<String> keys = jedis.keys(String.format("%s:%s:*", entityType, entityId));
         if (!keys.isEmpty()){
             jedis.del(keys.toArray(new String[0]));
         }

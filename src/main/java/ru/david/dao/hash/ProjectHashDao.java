@@ -25,7 +25,7 @@ public class ProjectHashDao {
         jedis.hset(key, "budget", String.valueOf(project.getBudget()));
         jedis.hset(key, "department", String.valueOf(project.getDepartment().getDepartmentId()));
 
-        if (project.getDepartment() != null) {
+        if (project.getManager() != null) {
             jedis.hset(key, "managerId", String.valueOf(project.getManager().getEmpId()));
         }
     }
